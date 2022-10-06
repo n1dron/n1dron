@@ -1,115 +1,150 @@
-﻿class Programcs
+﻿class Program
 {
-     static void Main(string[] args)
+    static void Main()
     {
+        Console.WriteLine("Выберите программу и введите подходящее число");
+        Console.WriteLine("1.Угадай число");
+        Console.WriteLine("2.Таблица умножения");
+        Console.WriteLine("3.Вывод делителей числа");
+        Console.WriteLine("4.Выйти из программы");
+        int Menu = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("Выберите операцию, введя число от 1 до 9: ");
-        Console.WriteLine("1.Сложить 2 числа");
-        Console.WriteLine("2.Вычесть первое из второго");
-        Console.WriteLine("3.Перемножить два числа");
-        Console.WriteLine("4.Разделить первое на второе");
-        Console.WriteLine("5.Возвести в степень N первое число");
-        Console.WriteLine("6.Найти квадратный корень из числа");
-        Console.WriteLine("7.Найти 1 процент от числа");
-        Console.WriteLine("8.Найти факториал из числа");
-        Console.WriteLine("9.Выйти из программы");
-        Console.WriteLine(" ");
-        string a = "yes";
-
-        do
+        if (Menu == 1)
         {
-            int Amount = Convert.ToInt32(Console.ReadLine());
+            Угадайчисло();
+        }
+        else if (Menu == 2)
+        {
+            Таблицаумножения();
+        }
+        else if (Menu == 3)
+        {
+            Делителичисла();   
+        }
+        else if (Menu == 4)
+        {
+            Console.WriteLine("Программа завершена");
+        }
+        else
+            Console.WriteLine("У вас введено неправильное число");
 
-            if (Amount == 1)
-            {
-
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Введите второе число: ");
-                double y = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Ответ: ");
-                Console.WriteLine(x + y);
-
-            }
-
-            else if (Amount == 2)
-            {
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Введите второе число: ");
-                double y = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Ответ: ");
-                Console.WriteLine(x - y);
-
-            }
-            else if (Amount == 3)
-            {
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Введите второе число: ");
-                double y = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Ответ: " + x * y);
-
-            }
-            else if (Amount == 4)
-            {
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Введите второе число: ");
-                double y = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Ответ: " + x / y);
-
-            }
-            else if (Amount == 5)
-            {
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Введите степень, в которую хотите возвести число: ");
-                double y = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Ответ: " + Math.Pow(x, y));
-
-            }
-            else if (Amount == 6)
-            {
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Корень из данного числа равняется: " + Math.Sqrt(x));
-
-            }
-            else if (Amount == 7)
-            {
-                Console.WriteLine("Введите первое число: ");
-                double x = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("1% из данного числа равняется: " + x / 100);
-
-            }
-            else if (Amount == 8)
-            {
-                Console.WriteLine("Введите число, которое хотите возвести в факториал: ");
-                int x = Convert.ToInt32(Console.ReadLine());
-                int n = 1;
-                for (int i = 1; x >= i; ++i)
-                {
-                    n = n * i;
-                }
-                Console.WriteLine(n);
-            }
-            else if (Amount == 9)
-            {
-                Console.WriteLine("Выход из программы");
-                break;
-            }
-            Console.WriteLine("Продолжить? (yes/no)");
-            a = Convert.ToString(Console.ReadLine());
-
-        } while (a == "yes");
     }
+    static void Угадайчисло()
+    {
+        Random game = new Random();
+        int Number = game.Next(0, 101);
+        while (true)
+        {
+            Console.WriteLine("Угадай загаданное число");
+            int reply = Convert.ToInt32(Console.ReadLine());
+            if (reply == Number)
+            {
+                Console.WriteLine("Ты угадал!!!");
+                break;
+
+            }
+            else
+            {
+                Console.WriteLine("Неправильно, попробуй ещё раз");
+                if (Number > reply)
+                {
+                    Console.WriteLine("Число должно быть больше");
+
+                }
+                else
+                {
+                    Console.WriteLine("Число должно быть меньше");
+                }
+            }
+        }
+        Main();
+
+    }
+
+    static void Таблицаумножения()
+    {
+        int[,] massiv = new int[10, 10];
+        for (int str = 1; str < massiv.GetLength(0); ++str)
+        {
+            for (int stolb = 1; stolb < massiv.GetLength(1); ++stolb)
+            {
+
+                int sum = str * stolb;
+                if (str == stolb)
+                {
+                    massiv[str, stolb] = sum;
+                    Console.Write(massiv[str, stolb] + "\t");
+                }
+                else if (str > stolb)
+                {
+                    massiv[str, stolb] = sum;
+                    Console.Write(massiv[str, stolb] + "\t");
+                }
+                else if (str < stolb)
+                {
+                    massiv[str, stolb] = sum;
+                    Console.Write(massiv[str, stolb] +"\t");
+                }
+
+            }
+            Console.WriteLine();
+
+        }
+        Main();
+
+
+    }
+
+    static void Делителичисла()
+    {
+        Console.WriteLine("Введи число, которое будет делиться");
+        int cifra = Convert.ToInt32(Console.ReadLine()); 
+        for (int i = 1; i <= cifra; i++)
+        {
+            if (cifra % i == 0)
+            {
+                Console.WriteLine(i + "\t");
+            }
+        }
+        Main();
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+ 
