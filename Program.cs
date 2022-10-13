@@ -1,150 +1,169 @@
-﻿class Program
+﻿using System.Data;
+
+class Program
 {
-    static void Main()
-    {
-        Console.WriteLine("Выберите программу и введите подходящее число");
-        Console.WriteLine("1.Угадай число");
-        Console.WriteLine("2.Таблица умножения");
-        Console.WriteLine("3.Вывод делителей числа");
-        Console.WriteLine("4.Выйти из программы");
-        int Menu = Convert.ToInt32(Console.ReadLine());
-
-        if (Menu == 1)
+        static void Main(string[] args)
         {
-            Угадайчисло();
+            pianino();
         }
-        else if (Menu == 2)
+        static void pianino()
         {
-            Таблицаумножения();
-        }
-        else if (Menu == 3)
-        {
-            Делителичисла();   
-        }
-        else if (Menu == 4)
-        {
-            Console.WriteLine("Программа завершена");
-        }
-        else
-            Console.WriteLine("У вас введено неправильное число");
-
-    }
-    static void Угадайчисло()
-    {
-        Random game = new Random();
-        int Number = game.Next(0, 101);
-        while (true)
-        {
-            Console.WriteLine("Угадай загаданное число");
-            int reply = Convert.ToInt32(Console.ReadLine());
-            if (reply == Number)
+            Console.WriteLine("Пианино c двумя октавами");
+            Console.WriteLine("Выберите октаву нажав 'F1' или 'F2':");
+            ConsoleKeyInfo Clavisha = Console.ReadKey();
+            List<int[]> tablica = new List<int[]>
             {
-                Console.WriteLine("Ты угадал!!!");
-                break;
-
+            new int[] {523, 554, 587, 622, 659, 698, 740, 784, 830, 880, 932, 987},
+            new int[] {1047, 1109, 1175, 1245, 1319, 1397, 1480, 1568, 1661, 1760, 1865, 1976}
+            };
+            if (Clavisha.Key == ConsoleKey.F1)
+            {
+                Octava1(tablica[0]);
             }
-            else
+            if (Clavisha.Key == ConsoleKey.F2)
             {
-                Console.WriteLine("Неправильно, попробуй ещё раз");
-                if (Number > reply)
-                {
-                    Console.WriteLine("Число должно быть больше");
-
-                }
-                else
-                {
-                    Console.WriteLine("Число должно быть меньше");
-                }
+                Octava2(tablica[1]);
             }
         }
-        Main();
-
-    }
-
-    static void Таблицаумножения()
-    {
-        int[,] massiv = new int[10, 10];
-        for (int str = 1; str < massiv.GetLength(0); ++str)
+        static void Octava1(int[] note)
         {
-            for (int stolb = 1; stolb < massiv.GetLength(1); ++stolb)
+            Console.WriteLine("5 Октава");
+            Console.WriteLine("Для переключения октав нажмите 'F5'");
+            for (ConsoleKeyInfo octava = Console.ReadKey(); octava.Key != ConsoleKey.F5;)
             {
-
-                int sum = str * stolb;
-                if (str == stolb)
+                if (octava.Key == ConsoleKey.A) 
                 {
-                    massiv[str, stolb] = sum;
-                    Console.Write(massiv[str, stolb] + "\t");
+                    Console.Beep(note[0], 400);
+                    Console.Clear();
                 }
-                else if (str > stolb)
+                if (octava.Key == ConsoleKey.W)
                 {
-                    massiv[str, stolb] = sum;
-                    Console.Write(massiv[str, stolb] + "\t");
+                    Console.Beep(note[1], 400);
+                    Console.Clear();
                 }
-                else if (str < stolb)
+                if (octava.Key == ConsoleKey.S)
                 {
-                    massiv[str, stolb] = sum;
-                    Console.Write(massiv[str, stolb] +"\t");
+                    Console.Beep(note[2], 400);
+                    Console.Clear();
                 }
-
+                if (octava.Key == ConsoleKey.D)
+                {
+                    Console.Beep(note[3], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.R)
+                {
+                    Console.Beep(note[4], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.F)
+                {
+                    Console.Beep(note[5], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.T)
+                {
+                    Console.Beep(note[6], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.G)
+                {
+                    Console.Beep(note[7], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.Y)
+                {
+                    Console.Beep(note[8], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.H)
+                {
+                    Console.Beep(note[9], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.J)
+                {
+                    Console.Beep(note[10], 400);
+                    Console.Clear();
+                }
+                if (octava.Key == ConsoleKey.I)
+                {
+                    Console.Beep(note[11], 400);
+                    Console.Clear();
+                }
+                octava = Console.ReadKey();
             }
-            Console.WriteLine();
-
+            pianino();
         }
-        Main();
-
-
-    }
-
-    static void Делителичисла()
-    {
-        Console.WriteLine("Введи число, которое будет делиться");
-        int cifra = Convert.ToInt32(Console.ReadLine()); 
-        for (int i = 1; i <= cifra; i++)
+        static void Octava2(int[] note)
         {
-            if (cifra % i == 0)
+            Console.WriteLine("6 Октава");
+            Console.WriteLine("Для переключения октав нажмите 'F5'");
+            for (ConsoleKeyInfo octava = Console.ReadKey(); octava.Key != ConsoleKey.F5;)
             {
-                Console.WriteLine(i + "\t");
+            if (octava.Key == ConsoleKey.A)
+            {
+                Console.Beep(note[0], 400);
+                Console.Clear();
             }
+            if (octava.Key == ConsoleKey.W)
+            {
+                Console.Beep(note[1], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.S)
+            {
+                Console.Beep(note[2], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.D)
+            {
+                Console.Beep(note[3], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.R)
+            {
+                Console.Beep(note[4], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.F)
+            {
+                Console.Beep(note[5], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.T)
+            {
+                Console.Beep(note[6], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.G)
+            {
+                Console.Beep(note[7], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.Y)
+            {
+                Console.Beep(note[8], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.H)
+            {
+                Console.Beep(note[9], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.J)
+            {
+                Console.Beep(note[10], 400);
+                Console.Clear();
+            }
+            if (octava.Key == ConsoleKey.I)
+            {
+                Console.Beep(note[11], 400);
+                Console.Clear();
+            }
+                octava = Console.ReadKey();
+            }
+            pianino();
         }
-        Main();
-
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-
-
- 
+}
